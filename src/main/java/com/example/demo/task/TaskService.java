@@ -28,7 +28,7 @@ public class TaskService {
         if(task.getDescription().isEmpty()){
             throw new BadRequestException(EMPTY_DESCRIPCION);
         }
-        taskRepository.updateTask(task);
+        taskRepository.save(task);
 
         Task updatedTask = loadTaskById(task.getId());
         return updatedTask;
