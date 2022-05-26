@@ -20,13 +20,14 @@ public class TaskService {
 
     @Transactional
     public Task updateTask(Task task) {
-        boolean taskExists = taskRepository.findById(task.getId()).isPresent();
 
-        if(!taskExists){
-            throw new BadRequestException(TASK_NOT_FOUND);
-        }
-        if(task.getDescription().isEmpty()){
+        if(task.getDescription() == null || task.getDescription().isEmpty()){
             throw new BadRequestException(EMPTY_DESCRIPCION);
+        }
+
+        boolean taskExists = taskRepository.findById(task.getId()).isPresent();
+        if(!taskExists){
+            throw new NotFoundException(TASK_NOT_FOUND);
         }
         taskRepository.save(task);
 
