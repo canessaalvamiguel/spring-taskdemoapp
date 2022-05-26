@@ -12,7 +12,7 @@ public class TaskController {
     }
 
     @PutMapping(path ="/tasks/{id}")
-    public Task update(@RequestBody Task task, @PathVariable("id") Long id) throws BadRequestException {
+    public Task update(@RequestBody Task task, @PathVariable("id") Long id) {
         task.setId(id);
         return  taskService.updateTask(task);
     }

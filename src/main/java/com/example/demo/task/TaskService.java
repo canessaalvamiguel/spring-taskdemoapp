@@ -19,7 +19,7 @@ public class TaskService {
     }
 
     @Transactional
-    public Task updateTask(Task task) throws BadRequestException {
+    public Task updateTask(Task task) {
         boolean taskExists = taskRepository.findById(task.getId()).isPresent();
 
         if(!taskExists){
