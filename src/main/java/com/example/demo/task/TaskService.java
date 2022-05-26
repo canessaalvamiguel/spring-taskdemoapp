@@ -1,6 +1,7 @@
 package com.example.demo.task;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TaskService {
@@ -17,7 +18,8 @@ public class TaskService {
         return taskRepository.findById(id).get();
     }
 
-    public int updateTask(Task task) throws BadRequestException {
+    @Transactional
+    public Task updateTask(Task task) throws BadRequestException {
         boolean taskExists = taskRepository.findById(task.getId()).isPresent();
 
         if(!taskExists){
@@ -26,6 +28,9 @@ public class TaskService {
         if(task.getDescription().isEmpty()){
             throw new BadRequestException(EMPTY_DESCRIPCION);
         }
-        return taskRepository.updateTask(task);
+        taskRepository.updateTask(task);
+
+        Task updatedTask = loadTaskById(task.getId());
+        return updatedTask;
     }
 }

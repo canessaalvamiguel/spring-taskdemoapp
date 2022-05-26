@@ -14,9 +14,6 @@ public class TaskController {
     @PutMapping(path ="/tasks/{id}")
     public Task update(@RequestBody Task task, @PathVariable("id") Long id) throws BadRequestException {
         task.setId(id);
-        taskService.updateTask(task);
-        Task updatedTask = taskService.loadTaskById(task.getId());
-        return updatedTask;
-
+        return  taskService.updateTask(task);
     }
 }
