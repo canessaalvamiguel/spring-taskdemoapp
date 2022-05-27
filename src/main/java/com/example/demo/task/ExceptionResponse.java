@@ -2,11 +2,11 @@ package com.example.demo.task;
 
 public class ExceptionResponse {
     private String message;
-    private String status;
+    private int status;
 
-    public ExceptionResponse(String message, String httCodeMessage) {
+    public ExceptionResponse(String message, int status) {
         this.message = message;
-        this.status = httCodeMessage;
+        this.status = status;
     }
 
     public String getMessage() {
@@ -17,11 +17,11 @@ public class ExceptionResponse {
         this.message = message;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }
